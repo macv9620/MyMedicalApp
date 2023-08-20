@@ -1,44 +1,26 @@
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
+package model;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Doctor {
-    private int id = 0;
-    private String name;
-    private String email;
-    private String address;
-    private String phoneNumber;
+public class Doctor extends User {
     private String speciality;
-
-    Doctor(String name, String speciality){
-        this.name = name;
+    public Doctor(String name, String email, String speciality){
+        super(name, email);
         this.speciality = speciality;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSpeciality() {
         return speciality;
     }
-
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public String getName() {
+        System.out.println("Polimorfismo desde model.Doctor");
+        return super.getName();
     }
 
     ArrayList<AvailableAppointments> availableDates = new ArrayList<>();
