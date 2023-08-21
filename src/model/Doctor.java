@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,12 +21,11 @@ public class Doctor extends User {
 
     @Override
     public String getName() {
-        System.out.println("Polimorfismo desde model.Doctor");
         return super.getName();
     }
 
     ArrayList<AvailableAppointments> availableDates = new ArrayList<>();
-    public void addAvailableDate(Date date, String time){
+    public void addAvailableDate(String date, String time){
         availableDates.add(new AvailableAppointments(date, time));
     }
 
@@ -36,10 +37,17 @@ public class Doctor extends User {
         private int id;
         private Date date;
         private String time;
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-        AvailableAppointments(Date date, String time){
-            this.date = date;
+        AvailableAppointments(String date, String time) {
+
+            try {
+                this.date = format.parse(date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
             this.time = time;
+            System.out.println("New date available added successfully " + "[" + date + " " + time + "]");
         }
 
         public Date getDate() {
