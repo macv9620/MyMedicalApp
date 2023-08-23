@@ -1,15 +1,16 @@
 package ui;
 
+import exceptions.CustomRunTimeException;
 import model.Doctor;
 import model.Patient;
-import model.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UIMenu {
 
-    public static final String[] MONTHS = {"Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"};
+    public static final String[] MONTHS = {"Ene", "Feb", "Mar", "Abr", "May",
+            "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"};
     public static Doctor loggedDoctor;
     public static Patient loggedPatient;
     public static void showMenu(){
@@ -37,6 +38,9 @@ public class UIMenu {
                 case 0:
                     System.out.println("Thank you for you visit");
                     break;
+                case 3:
+                    throw new CustomRunTimeException("Custom exception");
+                    //break;
                 default:
                     System.out.println("Please select a correct answer");
             }
